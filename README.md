@@ -22,34 +22,40 @@ Then diff the two files to see the difference in behavior.
 diff -y guava.txt heck.txt | grep "|"
 ```
 
+Run the following script for a markdown formatted output:
+
 ```bash
-build_i_d                                                     | build_id
-d2_d_enabled                                                  | d2d_enabled
-g_p_u_active                                                  | gpu_active
-product_i_d                                                   | product_id
-r_a_m                                                         | ram
-active_g_m_plugins                                            | active_gm_plugins
-changeset_i_d                                                 | changeset_id
-closed_t_s                                                    | closed_ts
-debug_i_d                                                     | debug_id
-device_i_d                                                    | device_id
-engaged_t_s                                                   | engaged_ts
-expired_t_s                                                   | expired_ts
-l2cache_k_b                                                   | l2cache_kb
-l3cache_k_b                                                   | l3cache_kb
-learn_more_t_s                                                | learn_more_ts
-load_duration_m_s                                             | load_duration_ms
-memory_m_b                                                    | memory_mb
-offered_t_s                                                   | offered_ts
-process_uptime_m_s                                            | process_uptime_ms
-submission_u_r_l                                              | submission_url
-subsys_i_d                                                    | subsys_id
-thread_i_d                                                    | thread_id
-total_pages_a_m                                               | total_pages_am
-vendor_i_d                                                    | vendor_id
-virtual_max_m_b                                               | virtual_max_mb
-voted_t_s                                                     | voted_ts
-window_closed_t_s                                             | window_closed_ts
-windows_u_b_r                                                 | windows_ubr
-xul_load_duration_m_s                                         | xul_load_duration_ms
+python3 format.py case.txt guava.txt heck.txt
 ```
+
+| original | java | rust |
+|---|---|---|
+| BuildID | build_i_d | build_id |
+| D2DEnabled | d2_d_enabled | d2d_enabled |
+| GPUActive | g_p_u_active | gpu_active |
+| ProductID | product_i_d | product_id |
+| RAM | r_a_m | ram |
+| activeGMPlugins | active_g_m_plugins | active_gm_plugins |
+| changesetID | changeset_i_d | changeset_id |
+| closedTS | closed_t_s | closed_ts |
+| debugID | debug_i_d | debug_id |
+| deviceID | device_i_d | device_id |
+| engagedTS | engaged_t_s | engaged_ts |
+| expiredTS | expired_t_s | expired_ts |
+| l2cacheKB | l2cache_k_b | l2cache_kb |
+| l3cacheKB | l3cache_k_b | l3cache_kb |
+| learnMoreTS | learn_more_t_s | learn_more_ts |
+| loadDurationMS | load_duration_m_s | load_duration_ms |
+| memoryMB | memory_m_b | memory_mb |
+| offeredTS | offered_t_s | offered_ts |
+| processUptimeMS | process_uptime_m_s | process_uptime_ms |
+| submissionURL | submission_u_r_l | submission_url |
+| subsysID | subsys_i_d | subsys_id |
+| threadID | thread_i_d | thread_id |
+| totalPagesAM | total_pages_a_m | total_pages_am |
+| vendorID | vendor_i_d | vendor_id |
+| virtualMaxMB | virtual_max_m_b | virtual_max_mb |
+| votedTS | voted_t_s | voted_ts |
+| windowClosedTS | window_closed_t_s | window_closed_ts |
+| windowsUBR | windows_u_b_r | windows_ubr |
+| xulLoadDurationMS | xul_load_duration_m_s | xul_load_duration_ms |
