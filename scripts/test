@@ -3,12 +3,13 @@
 function print_title() {
     local title=$1
     echo ""
-    echo "## $title"
+    echo "### $title"
     echo ""
 }
 
 function heck() { cargo run --quiet; }
 function guava() { sbt run | grep -v "\["; }
+function d2p() { g++ src/main.cpp -o target/d2p; ./target/d2p; }
 function pyregexp() { src/main.py; }
 function cases() { cat data/cases.txt; }
 function unit() { cat data/unit.txt; }
@@ -27,26 +28,26 @@ function testcase() {
     echo "$((err-2)) mismatched out of $((total))"
 }
 
+function testsuite() {
+    local title=$1
+    local test=$2
+
+    echo ""
+    echo "## ${title}"
+    print_title "alphanum_3"
+    testcase scripts/alphanum_3 heck "$test"
+
+    print_title "word_4"
+    testcase scripts/word_4 heck "$test"
+
+    print_title "cases"
+    testcase cases heck "$test"
+
+    print_title "unit"
+    testcase unit heck "$test"
+}
+
 echo "# Test Results"
-
-# print_title "rust vs scala: alphanum_3"
-# testcase scripts/alphanum_3 heck guava
-
-# print_title "rust vs scala: word_4"
-# echo "skipping..."
-# testcase scripts/word_4 heck guava
-
-# print_title "rust vs scala: cases"
-# testcase cases heck guava
-
-print_title "rust vs python: alphanum_3"
-testcase scripts/alphanum_3 heck pyregexp
-
-print_title "rust vs python: word_4"
-testcase scripts/word_4 heck pyregexp
-
-print_title "rust vs python: cases"
-testcase cases heck pyregexp
-
-print_title "rust vs python: unit"
-testcase unit heck pyregexp
+testsuite "Heck vs Python (regexp)" pyregexp
+testsuite "Heck vs Direct2Parquet" d2p
+testsuite "Heck vs CaseFormat" guava
