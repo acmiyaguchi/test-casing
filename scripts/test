@@ -27,6 +27,8 @@ function testcase() {
     echo "$((err-2)) mismatched out of $((total))"
 }
 
+echo "# Test Results"
+
 # print_title "rust vs scala: alphanum_3"
 # testcase scripts/alphanum_3 heck guava
 
