@@ -1,0 +1,23 @@
+CamelCase
+This is Human case.
+MixedUP CamelCase, with some Spaces
+mixed_up_ snake_case with some _spaces
+kebab-case
+SHOUTY_SNAKE_CASE
+snake_case
+this-contains_ ALLKinds OfWord_Boundaries
+XMLHttpRequest
+FIELD_NAME11
+99BOTTLES
+FieldNamE11
+abc123def456
+abc123DEF456
+abc123Def456
+abc123DEf456
+ABC123def456
+ABC123DEF456
+ABC123Def456
+ABC123DEf456
+ABC123dEEf456FOO
+abcDEF
+ABcDE
