@@ -2,3 +2,4 @@
 **/*.rs.bk
 /project
 **/*.pyc
+a.out

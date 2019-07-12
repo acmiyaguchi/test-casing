@@ -22,6 +22,14 @@ Then diff the two files to see the difference in behavior.
 diff -y guava.txt heck.txt | grep "|"
 ```
 
+This can be achieved in a one-liner, using another testing script:
+
+```bash
+diff -y \
+    <(scripts/generate.py | sbt run | grep -v "\[") \
+    <(scripts/generate.py | cargo run --quiet)
+```
+
 Run the following script for a markdown formatted output:
 
 ```bash
