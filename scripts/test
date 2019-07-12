@@ -1,0 +1,50 @@
+#!/bin/bash
+
+function print_title() {
+    local title=$1
+    echo ""
+    echo "## $title"
+    echo ""
+}
+
+function heck() { cargo run --quiet; }
+function guava() { sbt run | grep -v "\["; }
+function pyregexp() { src/main.py; }
+function cases() { cat data/cases.txt; }
+function unit() { cat data/unit.txt; }
+
+function testcase() {
+    local source=$1
+    local prog_ref=$2
+    local prog_test=$3
+
+    res=$(scripts/format <("$source") <($source | $prog_ref) <($source | $prog_test))
+    echo "$res"
+    
+    echo ""
+    err=$(echo "$res" | wc -l)
+    total=$($source | wc -l)
+    echo "$((err-2)) mismatched out of $((total))"
+}
+
+# print_title "rust vs scala: alphanum_3"
+# testcase scripts/alphanum_3 heck guava
+
+# print_title "rust vs scala: word_4"
+# echo "skipping..."
+# testcase scripts/word_4 heck guava
+
+# print_title "rust vs scala: cases"
+# testcase cases heck guava
+
+print_title "rust vs python: alphanum_3"
+testcase scripts/alphanum_3 heck pyregexp
+
+print_title "rust vs python: word_4"
+testcase scripts/word_4 heck pyregexp
+
+print_title "rust vs python: cases"
+testcase cases heck pyregexp
+
+print_title "rust vs python: unit"
+testcase unit heck pyregexp

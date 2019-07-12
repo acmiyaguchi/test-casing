@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+
+from itertools import product
+
+for chars in product("Aa7", repeat=3):
+    word = "".join(chars)
+    print(word)

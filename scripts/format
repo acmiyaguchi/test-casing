@@ -8,21 +8,21 @@ from contextlib import ExitStack
 
 def main(argv):
     if len(argv) != 4:
-        print(f"USAGE: {argv[0]} ORIGINAL JAVA RUST")
+        print(f"USAGE: {argv[0]} REFERENCE CONTROL TEST")
         sys.exit(1)
 
     filenames = argv[1:]
 
-    print("original|java|rust")
+    print("reference|control|test")
     print("-|-|-")
 
     with ExitStack() as stack:
         files = [stack.enter_context(open(name)) for name in filenames]
-        lines = zip(*[f.read().split() for f in files])
-        for original, java, rust in lines:
-            if java == rust:
+        lines = zip(*[map(lambda x: x.strip(), f.readlines()) for f in files])
+        for reference, control, test in lines:
+            if control == test:
                 continue
-            print(f"{original}|{java}|{rust}")
+            print(f"{reference}|{control}|{test}")
 
 
 if __name__ == "__main__":

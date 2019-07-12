@@ -1,17 +1,24 @@
 #!/usr/bin/env python3
 import fileinput
 import re
+import string
 
-WORD_BOUNDARY_PATTERN = r"\b|(?<=[a-z])(?=[A-Z])|(?<=[A-Z0-9])(?=[A-Z][a-z])"
+WORD_BOUND_PAT = re.compile(
+    r"""
+    \b                                  # standard word boundary
+    |(?<=[a-z])(?=[A-Z])                # aA -> a|A boundary
+    |(?<=[A-Z])(?=[A-Z][a-z])        # AAAa -> AA|Aa boundary
+    """,
+    re.VERBOSE,
+)
 
 
-def snake_case(line):
-    # Split a line based on the defined word boundaries. This will contain empty
-    # spaces before and after the line. Underscores are considered as part of
-    # word boundary in the predefined `\b`.
-    words = re.split(WORD_BOUNDARY_PATTERN, line)
-    cased = [w.strip("_").lower() for w in words if w]
-    return "_".join(cased)
+def snake_case(line: str) -> str:
+    # replace non-alphanumeric characters with spaces
+    subbed = re.sub(r"[^\w]|_", " ", line)
+    words = WORD_BOUND_PAT.split(subbed)
+    # filter space between words and snake_case
+    return "_".join([w.lower() for w in words if w.strip()])
 
 
 def main():
