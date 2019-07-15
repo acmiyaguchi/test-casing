@@ -6,8 +6,6 @@ import re
 REV_WORD_BOUND_PAT = re.compile(
     r"""
     \b                                  # standard word boundary
-    |(?<=[A-Z])(?=[a-z])                # aA -> a|A boundary
-    |(?<=[a-z][A-Z])(?=[A-Z])           # AAa -> A|Aa boundary
     |(?<=[a-z][A-Z])(?=\d*[A-Z])        # A7Aa -> A7|Aa boundary
     |(?<=[a-z][A-Z])(?=\d*[a-z])        # a7Aa -> a7|Aa boundary
     |(?<=[A-Z])(?=\d*[a-z])             # a7A -> a7|A boundary
