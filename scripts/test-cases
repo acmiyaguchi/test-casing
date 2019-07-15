@@ -1,0 +1,14 @@
+paste -d"," \
+    <(cat data/cases.txt) \
+    <(cat data/cases.txt | cargo run --quiet) \
+    > test-cases/mps-diff-integration.csv
+
+paste -d"," \
+    <(scripts/alphanum_3) \
+    <(scripts/alphanum_3 | cargo run --quiet) \
+    > test-cases/alphanum_3.csv
+
+paste -d"," \
+    <(scripts/word_4) \
+    <(scripts/word_4 | cargo run --quiet) \
+    > test-cases/word_4.csv
